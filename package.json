@@ -1,0 +1,14 @@
+{
+  "name": "raining",
+  "version": "1.0.0",
+  "description": "a simple app to tell you if it is raining or not",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "nolan t splan",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
