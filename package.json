@@ -4,6 +4,7 @@
   "description": "a simple app to tell you if it is raining or not",
   "main": "index.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "nolan t splan",
