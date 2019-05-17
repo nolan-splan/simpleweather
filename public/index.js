@@ -1,15 +1,9 @@
 let lat;
 let long;
 navigator.geolocation.getCurrentPosition((res) => {
-    console.log(res);
     let lat = res.coords.latitude;
     let long = res.coords.longitude;
-    console.log(lat);
-    console.log(long);
-    // let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=c48566402cc12bee720fb0f4c5585055`;
-    let url = `https://api.openweathermap.org/data/2.5/weather?lat=42.6526&lon=73.7562&appid=c48566402cc12bee720fb0f4c5585055`;
-    
-    
+    let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=c48566402cc12bee720fb0f4c5585055`;
     fetch(url).then((res) => {
         return res.json();
     }).then((json) => {
@@ -18,8 +12,6 @@ navigator.geolocation.getCurrentPosition((res) => {
         } else {
             $('.answer').text("No");
         }
-        console.log(json);
-        console.log(json.name)
     })
 })
 
@@ -39,11 +31,9 @@ function initMap() {
             map: map,
         });
         map.addListener('click', (e) => {
-            
+            $('.city-name').remove();
             newLat = e.latLng.lat()
             newLong = e.latLng.lng()
-            console.log(newLat);
-            console.log(newLong);
             newLatlng = {lat: newLat, lng: newLong};
             marker.setPosition(newLatlng);
             map.setCenter(marker.position);
@@ -51,20 +41,14 @@ function initMap() {
             fetch(url).then((res) => {
                 return res.json();
             }).then((json) => {
+                var name = json.name
+                var nameDiv = $(`<div class=city-name>${name}</div>`)
                 if (json.weather[0].main == "Rain") {
-                    $('.answer').before(`${json.name}`).text("Yes");
+                    $('.answer').append(nameDiv)
                 } else {
-                    $('.answer').before(`${json.name}`).text("No");
+                    $('.answer').append(nameDiv)
                 }
-                console.log(json);
-                console.log(json.name)
-            })
-            // var newMarker = new google.maps.Marker({
-            //     position: newLatlng,
-            //     map: map
-            // })
-
-            // map.setCenter(new google.maps.LatLng(newLat, newLong));
+            });
         })
     })
 }
