@@ -5,17 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link type='text/css' rel='stylesheet' href='styles.css'>
+
+    <!-- jQuery import-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script type='text/javascript' src='index.js'></script>
+    <!-- Bootstrap import-->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- P5 import-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.dom.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.sound.min.js"></script>
 
     <title>Document</title>
 </head>
 
 <body>
     <div id="map"></div>
-    <h1>Is it raining?</h1>
-    <div class="answer"></div>
+    <div class="answer-div">
+        <h1 class='title'>Is it raining?</h1>
+        <div class="answer"></div>
+    </div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCor_FX0xp4CIyw0j2KsOV7IAfx1izxvzE&callback=initMap"
     async defer></script>
+    <!-- <script type="text/javascript" src="sketch.js"></script> -->
+    <script type='text/javascript' src='index.js'></script>
+
 </body>
 </html>

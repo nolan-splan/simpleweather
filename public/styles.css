@@ -2,12 +2,28 @@ body {
 
 }
 #map {
+  width: 60%;
   height: 40%;
+  margin-left: auto;
+  margin-right: auto;
+  border: 2px solid black;
 }
 /* Optional: Makes the sample page fill the window. */
 html, body {
-  text-align: center;
   height: 100%;
   margin: 0;
   padding: 0;
+}
+
+.answer-div {
+    text-align: center;
+}
+
+hr {
+  border: 0;
+  clear:both;
+  display:block;
+  width: 96%;               
+  background-color:#000;
+  height: 1px;
 }
