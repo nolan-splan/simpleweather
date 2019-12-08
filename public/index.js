@@ -2,6 +2,7 @@ var map;
 var acceleration = 0.00098;
 var nDrops = 4000;
 var drops = [];
+
 function initMap() {
     navigator.geolocation.getCurrentPosition((res) => {
         var myLatLng = setLatLng(res);
@@ -20,12 +21,12 @@ function initMap() {
         getWeatherData(myLatLng);
     })
     function setMapPosition(e, marker) {
-        var newLatlng = { 
-            lat: e.latLng.lat(), 
-            lng: e.latLng.lng() 
+        var newLatlng = {
+            lat: e.latLng.lat(),
+            lng: e.latLng.lng()
         };
         marker.setPosition(newLatlng);
-        map.setCenter(marker.position);
+        map['center'] = marker.position;
         getWeatherData(newLatlng);
     }
 
@@ -37,19 +38,51 @@ function initMap() {
     }
 
     function getWeatherData(coords) {
-        let url = `https://api.openweathermap.org/data/2.5/weather?lat=${coords["lat"]}&lon=${coords["lng"]}&appid=c48566402cc12bee720fb0f4c5585055`;
+        let url = `https://api.openweathermap.org/data/2.5/weather?lat=${coords["lat"]}&lon=${coords["lng"]}&units=imperial&appid=c48566402cc12bee720fb0f4c5585055`;
         fetch(url).then((res) => {
             return res.json();
         }).then((json) => {
+            writeWeatherJson(json);
             renderResponse(json);
         });
+    }
+
+    function writeWeatherJson(json) {
+      // lets do some filtering before writing this file...
+      // these are the keys we actually care about, everything else? meh
+      const whitelist = ['coord', 'main', 'name', 'sys', 'weather', 'wind']
+      const { coord, main, name, sys, weather, wind } = json
+      const filteredJson = {
+        name,
+        country: sys.country,
+        description: weather[0].description,
+        temp: main.temp,
+        min_temp: main.temp_min,
+        max_temp: main.temp_max,
+        pressure: main.pressure,
+        humidity: main.humidity,
+        sunrise: sys.sunrise,
+        sunset: sys.sunset,
+        wind_speed: wind.speed,
+        wind_degree: wind.deg,
+        lat: coord.lat,
+        lon: coord.lon,
+      }
+
+      $.ajax({
+        url: '/write_weather',
+        data: filteredJson,
+        dataType: 'json',
+        method: 'POST',
+        success: () => console.log('sent the json'),
+        fail: (e) => console.log(e),
+      })
     }
 
     function renderResponse(json) {
         var name = json.name;
         var nameDiv = $(`<div class=city-name>${name}</div>`);
         $('.title').text(`Is it raining in ${name}?`);
-        console.log(json);
         json.weather[0].main == "Rain" ? $('.answer').text("Yes") : $('.answer').text("No");
     }
 }

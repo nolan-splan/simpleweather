@@ -14,7 +14,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.dom.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.sound.min.js"></script>
-
+    <!-- <script type='text/javascript' src='datatable.js'></script> -->
     <title>Document</title>
 </head>
 
@@ -23,6 +23,11 @@
     <div class="answer-div">
         <h1 class='title'>Is it raining?</h1>
         <div class="answer"></div>
+        <button id="download-weatherdata-button">
+            <a href="/download">
+                Download Weather JSON
+            </a>
+        </button>
     </div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCor_FX0xp4CIyw0j2KsOV7IAfx1izxvzE&callback=initMap"
     async defer></script>

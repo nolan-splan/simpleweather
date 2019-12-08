@@ -1,6 +1,18 @@
 body {
 
 }
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+th, td {
+  margin-left: 2rem;
+  margin-right: 2rem;
+  padding-right: 2rem;
+  padding-left: 2rem;
+}
 #map {
   width: 60%;
   height: 40%;
@@ -23,7 +35,7 @@ hr {
   border: 0;
   clear:both;
   display:block;
-  width: 96%;               
+  width: 96%;
   background-color:#000;
   height: 1px;
 }
